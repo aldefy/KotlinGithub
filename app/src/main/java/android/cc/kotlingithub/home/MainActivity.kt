@@ -1,7 +1,8 @@
-package android.cc.kotlingithub
+package android.cc.kotlingithub.home
 
-import android.support.v7.app.AppCompatActivity
+import android.cc.kotlingithub.R
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
