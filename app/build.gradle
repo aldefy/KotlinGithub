@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "android.cc.kotlingithub"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        compileOptions {
+            targetCompatibility rootProject.ext.targetJVM
+            sourceCompatibility rootProject.ext.targetJVM
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+}
+
+dependencies {
+    //Google and support libs
+    compile("com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion") {
+        exclude group: 'com.android.support', module: 'annotations-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-v7'
+        exclude group: 'com.android.support', module: 'design'
+    }
+    compile("com.android.support:support-v4:$rootProject.ext.supportLibraryVersion")
+    compile("com.android.support:design:$rootProject.ext.supportLibraryVersion") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'annotations-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-v7'
+    }
+    compile("com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+        exclude group: 'com.android.support', module: 'annotations-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-v7'
+        exclude group: 'com.android.support', module: 'design'
+    }
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // Other dependencies
+    compile("com.github.aurae.retrofit2:converter-logansquare:1.4.1") {
+        exclude group: 'com.squareup.retrofit2', module: 'retrofit'
+    }
+    compile("com.squareup.retrofit2:adapter-rxjava:2.1.0") {
+        exclude group: 'com.squareup.retrofit2', module: 'retrofit'
+    }
+    compile 'com.bluelinelabs:logansquare:1.3.7'
+    annotationProcessor 'com.bluelinelabs:logansquare-compiler:1.3.7'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+}
+repositories {
+    mavenCentral()
+}
